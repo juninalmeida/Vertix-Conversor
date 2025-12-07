@@ -87,10 +87,10 @@
 }
 
 .currency-option.is-active {
-  background-color: rgba(76, 94, 76, 0.18);
-  border-color: rgba(90, 114, 90, 0.7);
-  border-color: color-mix(in srgb, #5a725a 75%, #ffffff 25%);
-  box-shadow: 0 12px 28px rgba(76, 94, 76, 0.22);
+  background-color: rgba(76, 94, 76, 0.12);
+  border-color: rgba(90, 114, 90, 0.4);
+  border-color: color-mix(in srgb, #5a725a 55%, #ffffff 45%);
+  box-shadow: 0 6px 16px rgba(76, 94, 76, 0.12);
   color: var(--text-title);
 }
 
