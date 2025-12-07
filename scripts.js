@@ -13,6 +13,8 @@ if (!amount) {
 
 const currencyButtons = document.querySelectorAll(".currency-option");
 let selectedCurrencyCode = null;
+let conversionHistory = [];
+const chartButton = document.querySelector(".chart-btn");
 
 if (currencyButtons.length === 0) {
   console.warn("Nenhuma opção de moeda encontrada no DOM");
@@ -66,22 +68,6 @@ if (currencyButtons.length === 0) {
           suffixSymbolElement.textContent = symbol;
         }
 
-        if (selectedCurrencyCode) {
-          const symbol = getCurrencySymbol(selectedCurrencyCode);
-
-          if (pillElement) {
-            pillElement.textContent = symbol;
-          }
-
-          if (suffixCodeElement) {
-            suffixCodeElement.textContent = symbol;
-          }
-
-          if (suffixSymbolElement) {
-            suffixSymbolElement.textContent = symbol;
-          }
-        }
-
         updateConvertButtonState();
       }
     });
@@ -103,12 +89,30 @@ const pillElement = document.querySelector(".pill");
 const suffixCodeElement = document.querySelector(".suffix-code");
 const suffixSymbolElement = document.querySelector(".symbol");
 const convertButton = document.querySelector(".convert-btn");
+const historyFooter = document.querySelector(".history-footer");
+const historyList = document.querySelector(".history-list");
 
+if (chartButton && historyFooter) {
+  chartButton.addEventListener("click", () => {
+    const isHidden = historyFooter.classList.contains("is-hidden");
+
+    if (isHidden) {
+      historyFooter.classList.remove("is-hidden");
+      historyFooter.setAttribute("aria-hidden", "false");
+      renderHistory(); //
+    } else {
+      historyFooter.classList.add("is-hidden");
+      historyFooter.setAttribute("aria-hidden", "true");
+    }
+
+    chartButton.blur();
+  });
+}
 function convertCurrency(amountValue, price, symbol) {
   const numericAmount = Number(amountValue);
 
   if (isNaN(numericAmount) || numericAmount <= 0) {
-    console.warn("Valor inválido para conversão:", amount);
+    console.warn("Valor inválido para conversão:", amountValue);
     return;
   }
 
@@ -128,9 +132,61 @@ function convertCurrency(amountValue, price, symbol) {
     resultAmountElement.textContent = formattedBRL;
   }
 
+  let formattedRate = price.toFixed(2).replace(".", ",");
+
   if (resultRateElement) {
-    const formattedRate = price.toFixed(2).replace(".", ",");
     resultRateElement.textContent = `Taxa: 1 ${selectedCurrencyCode} (${symbol}) = R$ ${formattedRate}`;
+  }
+
+  conversionHistory.push({
+    currency: selectedCurrencyCode,
+    symbol,
+    amount: numericAmount,
+    result: formattedBRL,
+    rate: formattedRate,
+  });
+
+  if (conversionHistory.length > 3) {
+    conversionHistory.shift();
+  }
+
+  renderHistory();
+}
+
+function renderHistory() {
+  if (!historyList) return;
+
+  const emptyItem = historyList.querySelector(".history-empty");
+  if (emptyItem) {
+    emptyItem.remove();
+  }
+
+  historyList.innerHTML = "";
+
+  const lastConversions = [...conversionHistory].slice(-3).reverse();
+
+  lastConversions.forEach((item) => {
+    const li = document.createElement("li");
+    li.classList.add("history-item");
+
+    li.innerHTML = `
+      <div class="history-item-main">
+        <span class="history-amount">${item.symbol} ${item.amount}</span>
+        <span class="history-result">${item.result}</span>
+      </div>
+      <p class="history-meta">
+        1 ${item.currency} = R$ ${item.rate}
+      </p>
+    `;
+
+    historyList.appendChild(li);
+  });
+
+  if (conversionHistory.length === 0) {
+    const li = document.createElement("li");
+    li.classList.add("history-empty");
+    li.textContent = "Nenhuma conversão realizada ainda";
+    historyList.appendChild(li);
   }
 }
 
