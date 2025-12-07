@@ -6,6 +6,8 @@ if (!amount) {
   amount.addEventListener("input", () => {
     const hasCharactersRegex = /\D+/g;
     amount.value = amount.value.replace(hasCharactersRegex, "");
+
+    updateConvertButtonState();
   });
 }
 
@@ -63,6 +65,24 @@ if (currencyButtons.length === 0) {
         if (suffixSymbolElement) {
           suffixSymbolElement.textContent = symbol;
         }
+
+        if (selectedCurrencyCode) {
+          const symbol = getCurrencySymbol(selectedCurrencyCode);
+
+          if (pillElement) {
+            pillElement.textContent = symbol;
+          }
+
+          if (suffixCodeElement) {
+            suffixCodeElement.textContent = symbol;
+          }
+
+          if (suffixSymbolElement) {
+            suffixSymbolElement.textContent = symbol;
+          }
+        }
+
+        updateConvertButtonState();
       }
     });
   });
@@ -82,6 +102,7 @@ const resultRateElement = document.querySelector(".result-rate");
 const pillElement = document.querySelector(".pill");
 const suffixCodeElement = document.querySelector(".suffix-code");
 const suffixSymbolElement = document.querySelector(".symbol");
+const convertButton = document.querySelector(".convert-btn");
 
 function convertCurrency(amountValue, price, symbol) {
   const numericAmount = Number(amountValue);
@@ -110,6 +131,25 @@ function convertCurrency(amountValue, price, symbol) {
   if (resultRateElement) {
     const formattedRate = price.toFixed(2).replace(".", ",");
     resultRateElement.textContent = `Taxa: 1 ${selectedCurrencyCode} (${symbol}) = R$ ${formattedRate}`;
+  }
+}
+
+function updateConvertButtonState() {
+  if (!convertButton || !amount) {
+    return;
+  }
+
+  const currentAmountValue = amount.value.trim();
+
+  const hasValidAmount =
+    currentAmountValue !== "" && Number(currentAmountValue) > 0;
+
+  const hasSelectedCurrency = !!selectedCurrencyCode;
+
+  if (hasValidAmount && hasSelectedCurrency) {
+    convertButton.disabled = false;
+  } else {
+    convertButton.disabled = true;
   }
 }
 
