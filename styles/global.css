@@ -13,6 +13,12 @@ html { font-size: 62.5%; }
 body {
   font-family: "Inter", system-ui, -apple-system, sans-serif;
   background-color: var(--bg-app);
+
+  background-image: url(../assets/background/Container.png);
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+
   color: var(--text-body);
   
 

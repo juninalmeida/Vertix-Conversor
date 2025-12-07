@@ -15,16 +15,14 @@
   <body>
     <main class="app-container">
       <section class="converter-card">
-
         <header class="card-header">
-
           <div class="header-branding">
             <div class="icon-wrapper">
               <img src="./assets/icons/dolar.svg" alt="Ícone de dólar" />
             </div>
 
             <div class="branding-text">
-              <h1>Conversor de Moedas</h1>
+              <h1>Vertix Conversor</h1>
               <p>Conversão para Real Brasileiro</p>
             </div>
           </div>
@@ -33,10 +31,148 @@
             <img src="./assets/icons/arrow.svg" alt="Ícone de tendência" />
           </button>
         </header>
+        <section class="hero-section">
+          <form class="conversion-form" novalidate>
+            <div class="field-group">
+              <p class="field-label">Moeda de Origem</p>
+              <div
+                class="currency-grid"
+                role="group"
+                aria-label="Moeda de origem"
+              >
+                <button
+                  class="currency-option"
+                  type="button"
+                  aria-pressed="false"
+                  aria-label="Dólar Americano (USD)"
+                >
+                  <span class="flag" aria-hidden="true">🇺🇸</span>
+                  <span class="code">USD</span>
+                </button>
 
+                <button
+                  class="currency-option"
+                  type="button"
+                  aria-pressed="false"
+                  aria-label="Euro (EUR)"
+                >
+                  <span class="flag" aria-hidden="true">🇪🇺</span>
+                  <span class="code">EUR</span>
+                </button>
 
+                <button
+                  class="currency-option"
+                  type="button"
+                  aria-pressed="false"
+                  aria-label="Libra Esterlina (GBP)"
+                >
+                  <span class="flag" aria-hidden="true">🇬🇧</span>
+                  <span class="code">GBP</span>
+                </button>
+
+                <button
+                  class="currency-option"
+                  type="button"
+                  aria-pressed="false"
+                  aria-label="Iene Japonês (JPY)"
+                >
+                  <span class="flag" aria-hidden="true">🇯🇵</span>
+                  <span class="code">JPY</span>
+                </button>
+
+                <button
+                  class="currency-option"
+                  type="button"
+                  aria-pressed="false"
+                  aria-label="Dólar Australiano (AUD)"
+                >
+                  <span class="flag" aria-hidden="true">🇦🇺</span>
+                  <span class="code">AUD</span>
+                </button>
+
+                <button
+                  class="currency-option"
+                  type="button"
+                  aria-pressed="false"
+                  aria-label="Dólar Canadense (CAD)"
+                >
+                  <span class="flag" aria-hidden="true">🇨🇦</span>
+                  <span class="code">CAD</span>
+                </button>
+
+                <button
+                  class="currency-option"
+                  type="button"
+                  aria-pressed="false"
+                  aria-label="Franco Suíço (CHF)"
+                >
+                  <span class="flag" aria-hidden="true">🇨🇭</span>
+                  <span class="code">CHF</span>
+                </button>
+
+                <button
+                  class="currency-option"
+                  type="button"
+                  aria-pressed="false"
+                  aria-label="Yuan Chinês (CNY)"
+                >
+                  <span class="flag" aria-hidden="true">🇨🇳</span>
+                  <span class="code">CNY</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <div class="field-label-row">
+                <p class="field-label">Valor em</p>
+                <span class="pill">USD</span>
+              </div>
+
+              <div class="input-shell">
+                <input
+                  type="number"
+                  name="amount"
+                  inputmode="decimal"
+                  placeholder="100"
+                  aria-label="Valor em moeda de origem"
+                />
+                <div class="input-suffix" aria-hidden="true">
+                  <span class="symbol">$</span>
+                  <span class="suffix-code">USD</span>
+                </div>
+              </div>
+            </div>
+
+            <button class="convert-btn" type="button" disabled>
+              <span class="convert-icon" aria-hidden="true">⇅</span>
+              <span>Converter</span>
+            </button>
+          </form>
+        </section>
+
+        <section class="result-section">
+          <div class="info-card result-card">
+            <div class="result-header">
+              <span class="result-icon" aria-hidden="true">$</span>
+              <p class="result-label">Resultado em Real</p>
+            </div>
+            <p class="result-amount">R$ 0,00</p>
+            <p class="result-rate">Taxa: 1 USD = R$ 0,00</p>
+          </div>
+        </section>
+
+        <footer class="history-footer is-hidden" aria-hidden="true">
+          <div class="info-card history-card">
+            <div class="history-header">
+              <span class="history-icon" aria-hidden="true">⏱</span>
+              <p class="history-title">Histórico de Conversões</p>
+            </div>
+            <ul class="history-list">
+              <li class="history-empty">Nenhuma conversão realizada ainda</li>
+            </ul>
+          </div>
+        </footer>
       </section>
     </main>
-
   </body>
 </html>
