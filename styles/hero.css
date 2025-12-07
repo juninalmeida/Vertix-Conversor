@@ -1,0 +1,184 @@
+.hero-section {
+  margin-top: clamp(1.2rem, 3vw, 1.8rem);
+}
+
+.conversion-form {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.4rem, 3vw, 1.8rem);
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.8rem, 2vw, 1rem);
+}
+
+.field-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.field-label {
+  font-size: 1.3rem;
+  color: var(--text-body);
+}
+
+.pill {
+  background-color: var(--bg-input);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: var(--text-muted);
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  font-size: 1.2rem;
+}
+
+.currency-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: clamp(0.8rem, 2vw, 1rem);
+}
+
+.currency-option {
+  background-color: var(--bg-input);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-md);
+  padding: clamp(0.9rem, 2vw, 1.1rem);
+  display: flex;
+  align-items: center;
+  gap: clamp(0.8rem, 2vw, 1rem);
+  color: var(--text-body);
+  width: 100%;
+  transition: background-color 0.2s ease, border-color 0.2s ease,
+    box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.currency-option .flag {
+  inline-size: clamp(3rem, 5vw, 3.4rem);
+  block-size: clamp(2.6rem, 4.4vw, 3rem);
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  font-size: clamp(1.8rem, 3vw, 2.1rem);
+  line-height: 1;
+}
+
+.currency-option .code {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text-title);
+}
+
+.currency-option:hover {
+  background-color: var(--bg-hover);
+  border-color: rgba(255, 255, 255, 0.08);
+  transform: translateY(-1px);
+}
+
+.currency-option:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.currency-option.is-active {
+  background-color: rgba(76, 94, 76, 0.18);
+  border-color: rgba(90, 114, 90, 0.7);
+  border-color: color-mix(in srgb, #5a725a 75%, #ffffff 25%);
+  box-shadow: 0 12px 28px rgba(76, 94, 76, 0.22);
+  color: var(--text-title);
+}
+
+.input-shell {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.8rem, 2vw, 1rem);
+  background-color: var(--bg-input);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-md);
+  padding: clamp(1rem, 2.4vw, 1.2rem) clamp(1.2rem, 2.4vw, 1.4rem);
+}
+
+.input-shell input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text-title);
+  font-size: 1.5rem;
+}
+
+.input-shell input::placeholder {
+  color: var(--text-muted);
+}
+
+.input-shell input:focus-visible {
+  outline: none;
+}
+
+.input-suffix {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.2rem;
+  min-width: 4.4rem;
+}
+
+.input-suffix .symbol {
+  font-size: 1.4rem;
+  color: var(--text-title);
+}
+
+.input-suffix .suffix-code {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+}
+
+.convert-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  width: 100%;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: clamp(1.2rem, 3vw, 1.4rem);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #e9f2ff;
+  background-color: var(--primary);
+  transition: background-color 0.2s ease, box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.convert-btn .convert-icon {
+  font-size: 1.4rem;
+}
+
+.convert-btn:not(:disabled):hover {
+  background-color: var(--primary-hover);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+  transform: translateY(-1px);
+}
+
+.convert-btn:not(:disabled):focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.convert-btn:disabled {
+  background-color: #2a3038;
+  color: var(--text-muted);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+@media (max-width: 520px) {
+  .currency-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
