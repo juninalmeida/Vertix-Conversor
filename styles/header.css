@@ -28,21 +28,19 @@
 }
 
 .icon-wrapper {
-  background-color: var(--bg-input);
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  inline-size: clamp(4.2rem, 6vw, 4.8rem);
-  aspect-ratio: 1;
-  border-radius: var(--radius-md);
+  background-color: transparent;
+  border: none;
+  inline-size: clamp(3.6rem, 6vw, 4.4rem);
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  padding: clamp(0.9rem, 2vw, 1.1rem);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  padding: 0;
+  box-shadow: none;
   flex-shrink: 0;
 }
 
 .icon-wrapper img {
-  inline-size: clamp(1.6rem, 3vw, 1.9rem);
+  inline-size: clamp(3rem, 5vw, 3.6rem);
   block-size: auto;
 }
 
